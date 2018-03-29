@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="practice.project.dao.BookMapper" >
+  <resultMap id="BaseResultMap" type="practice.project.entity.Book" >
+    <id column="book_id" property="bookId" jdbcType="CHAR" />
+    <result column="book_name" property="bookName" jdbcType="VARCHAR" />
+    <result column="book_style" property="bookStyle" jdbcType="VARCHAR" />
+    <result column="book_author" property="bookAuthor" jdbcType="VARCHAR" />
+    <result column="book_pub" property="bookPub" jdbcType="VARCHAR" />
+    <result column="book_in_time" property="bookInTime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="CHAR" />
+    <result column="img_path" property="imgPath" jdbcType="VARCHAR" />
+    <result column="book_hot" property="bookHot" jdbcType="INTEGER" />
+    <result column="book_rem" property="bookRem" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="DECIMAL" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="practice.project.entity.Book" extends="BaseResultMap" >
+    <result column="book_comment" property="bookComment" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    book_id, book_name, book_style, book_author, book_pub, book_in_time, status, img_path, 
+    book_hot, book_rem, price
+  </sql>
+  <sql id="Blob_Column_List" >
+    book_comment
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from lms_book
+    where book_id = #{bookId,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from lms_book
+    where book_id = #{bookId,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="practice.project.entity.Book" >
+    insert into lms_book (book_id, book_name, book_style, 
+      book_author, book_pub, book_in_time, 
+      status, img_path, book_hot, 
+      book_rem, price, book_comment
+      )
+    values (#{bookId,jdbcType=CHAR}, #{bookName,jdbcType=VARCHAR}, #{bookStyle,jdbcType=VARCHAR}, 
+      #{bookAuthor,jdbcType=VARCHAR}, #{bookPub,jdbcType=VARCHAR}, #{bookInTime,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=CHAR}, #{imgPath,jdbcType=VARCHAR}, #{bookHot,jdbcType=INTEGER}, 
+      #{bookRem,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, #{bookComment,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="practice.project.entity.Book" >
+    insert into lms_book
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="bookId != null" >
+        book_id,
+      </if>
+      <if test="bookName != null" >
+        book_name,
+      </if>
+      <if test="bookStyle != null" >
+        book_style,
+      </if>
+      <if test="bookAuthor != null" >
+        book_author,
+      </if>
+      <if test="bookPub != null" >
+        book_pub,
+      </if>
+      <if test="bookInTime != null" >
+        book_in_time,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="imgPath != null" >
+        img_path,
+      </if>
+      <if test="bookHot != null" >
+        book_hot,
+      </if>
+      <if test="bookRem != null" >
+        book_rem,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="bookComment != null" >
+        book_comment,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="bookId != null" >
+        #{bookId,jdbcType=CHAR},
+      </if>
+      <if test="bookName != null" >
+        #{bookName,jdbcType=VARCHAR},
+      </if>
+      <if test="bookStyle != null" >
+        #{bookStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="bookAuthor != null" >
+        #{bookAuthor,jdbcType=VARCHAR},
+      </if>
+      <if test="bookPub != null" >
+        #{bookPub,jdbcType=VARCHAR},
+      </if>
+      <if test="bookInTime != null" >
+        #{bookInTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="imgPath != null" >
+        #{imgPath,jdbcType=VARCHAR},
+      </if>
+      <if test="bookHot != null" >
+        #{bookHot,jdbcType=INTEGER},
+      </if>
+      <if test="bookRem != null" >
+        #{bookRem,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="bookComment != null" >
+        #{bookComment,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="practice.project.entity.Book" >
+    update lms_book
+    <set >
+      <if test="bookName != null" >
+        book_name = #{bookName,jdbcType=VARCHAR},
+      </if>
+      <if test="bookStyle != null" >
+        book_style = #{bookStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="bookAuthor != null" >
+        book_author = #{bookAuthor,jdbcType=VARCHAR},
+      </if>
+      <if test="bookPub != null" >
+        book_pub = #{bookPub,jdbcType=VARCHAR},
+      </if>
+      <if test="bookInTime != null" >
+        book_in_time = #{bookInTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="imgPath != null" >
+        img_path = #{imgPath,jdbcType=VARCHAR},
+      </if>
+      <if test="bookHot != null" >
+        book_hot = #{bookHot,jdbcType=INTEGER},
+      </if>
+      <if test="bookRem != null" >
+        book_rem = #{bookRem,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="bookComment != null" >
+        book_comment = #{bookComment,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where book_id = #{bookId,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="practice.project.entity.Book" >
+    update lms_book
+    set book_name = #{bookName,jdbcType=VARCHAR},
+      book_style = #{bookStyle,jdbcType=VARCHAR},
+      book_author = #{bookAuthor,jdbcType=VARCHAR},
+      book_pub = #{bookPub,jdbcType=VARCHAR},
+      book_in_time = #{bookInTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=CHAR},
+      img_path = #{imgPath,jdbcType=VARCHAR},
+      book_hot = #{bookHot,jdbcType=INTEGER},
+      book_rem = #{bookRem,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+      book_comment = #{bookComment,jdbcType=LONGVARCHAR}
+    where book_id = #{bookId,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="practice.project.entity.Book" >
+    update lms_book
+    set book_name = #{bookName,jdbcType=VARCHAR},
+      book_style = #{bookStyle,jdbcType=VARCHAR},
+      book_author = #{bookAuthor,jdbcType=VARCHAR},
+      book_pub = #{bookPub,jdbcType=VARCHAR},
+      book_in_time = #{bookInTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=CHAR},
+      img_path = #{imgPath,jdbcType=VARCHAR},
+      book_hot = #{bookHot,jdbcType=INTEGER},
+      book_rem = #{bookRem,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL}
+    where book_id = #{bookId,jdbcType=CHAR}
+  </update>
+  
+  <select id="selectByCondition" parameterType="practice.project.entity.Book" resultMap="ResultMapWithBLOBs">
+  	select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from lms_book
+    <trim prefix="where " suffix="" suffixOverrides="," >
+      <if test="bookName != null" >
+        book_name = #{bookName,jdbcType=VARCHAR},
+      </if>
+      <if test="bookStyle != null" >
+        book_style = #{bookStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="bookAuthor != null" >
+        book_author = #{bookAuthor,jdbcType=VARCHAR},
+      </if>
+      <if test="bookPub != null" >
+        book_pub = #{bookPub,jdbcType=VARCHAR},
+      </if>
+      <if test="bookInTime != null" >
+        book_in_time &gt;= #{bookInTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="imgPath != null" >
+        img_path = #{imgPath,jdbcType=VARCHAR},
+      </if>
+      <if test="bookHot != null" >
+        book_hot = #{bookHot,jdbcType=INTEGER},
+      </if>
+      <if test="bookRem != null" >
+        book_rem = #{bookRem,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="bookComment != null" >
+        book_comment = #{bookComment,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </select>
+</mapper>

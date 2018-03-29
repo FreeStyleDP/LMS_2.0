@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+    <head>
+
+        <meta charset="utf-8">
+        <title>图书借阅管理系统</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        
+   		 <script src="../js/util.js"></script>
+
+        <!-- CSS -->
+<!--         <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=PT+Sans:400,700'> -->
+        <link rel="stylesheet" href="../assets/css/reset.css">
+        <link rel="stylesheet" href="../assets/css/supersized.css">
+        <link rel="stylesheet" href="../assets/css/style.css">
+		<script src="../js/sweet-alert.min.js"></script>
+		<link rel="stylesheet" href="../css/sweet-alert.css">
+
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+	<style>
+		form{
+			position:relative;
+		}
+		.e,.e1{
+			transform: rotate(30deg);
+			-ms-transform: rotate(30deg);		/* IE 9 */
+			-webkit-transform: rotate(30deg);	/* Safari and Chrome */
+			-o-transform: rotate(30deg);		/* Opera */
+			position:absolute;
+			top:30%;
+			right:-20%;
+		}
+		
+	</style>
+
+    </head>
+
+    <body>
+	<form >
+        <div class="page-container">
+            <h1>登录</h1>
+<!--             <form action="login/login.do" method="post"> -->
+            <input type="text" name="userName" class="username" placeholder="账号"></br>
+            <input type="password" name="password" class="password" placeholder="密码" ></br>
+<!--             <input type="text" placeholder="验证码" ></input></br> -->
+                <button type="button">登录</button>
+                <div class="error"><span>+</span></div>
+                <div class="e1"><h1></h1></div>
+<!--             </form> -->
+            <div class="connect">
+            </div>
+        </div>
+	</form>
+        <!-- Javascript -->
+        <script src="../assets/js/jquery-1.8.2.min.js"></script>
+        <script src="../assets/js/supersized.3.2.7.min.js"></script>
+        <script src="../assets/js/supersized-init.js"></script>
+        <script src="../assets/js/scripts.js"></script>
+       
+	<script type="text/javascript">
+		$(".page-container").click(function(){
+			$(".e").css("display","none");
+		});
+		
+		$("input").change(function(){
+			  $(".e1").css("display","none");
+			});
+		
+		
+		$("button").click(function(){
+			$.ajax({  
+	            type : "post",  
+	            url : path+"login/checkUser.do",  
+	            data : {
+	            	userName:$('.username').val(),
+	            	password:$('.password').val(),
+	            	status:"allow"
+	            	}, 
+	            success : function(result){
+	            	var status=result.status;
+	            	if(status == 2 || status == 3 ){
+		            	 $(".e1").css("display","inline");
+	            		$(".e1 h1").html(result.message);
+	            	}else if(status == 0){
+	            		location.href=path+"html/index.html";
+	            	}else if(status == 4){
+// 	            		已告知，或者是无其他账号在登录中
+						 swal({
+							title: "警告",
+							  text: result.message,
+							  type: "warning",
+							  showCancelButton: true,
+							  confirmButtonColor: "#DD6B55",
+							  confirmButtonText: "继续",
+							  cancelButtonText:"算了，考虑一下",
+							  closeOnConfirm: true
+							},function(){
+								$.ajax({  
+						            type : "post",  
+						            url : path+"login/checkUser.do",  
+						            data : {
+						            	userName:$('.username').val(),
+						            	password:$('.password').val(),
+						            	status:"stop"
+						            	},
+						            success : function(result){
+						            	 $(".e1").css("display","inline");
+						            	var status=result.status;
+						            	if(status == 2 || status == 3 ){
+						            		$(".e1 h1").html(result.message);
+						            	}else if(status == 0){
+						            		location.href=path+"html/index.html";
+					            		}
+						            }
+								});
+						 });
+	            		
+	            	}
+	            }
+			});
+		});
+	</script>
+    </body>
+
+</html>
+
+
+
+

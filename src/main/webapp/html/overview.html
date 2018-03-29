@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>首页</title>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/AdminLTE.css">
+    <link rel="stylesheet" href="../css/ionicons.css">
+    <link rel="stylesheet" href="../css/font-awesome.css">
+    <link rel="stylesheet" href="../css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="../css/sweet-alert.css">
+    
+    <script type="text/javascript" src="../js/jquery-2.2.3.min.js"></script>
+    <script src="../js/sweet-alert.min.js"></script>
+    <script src="../js/util.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    
+    
+    <style type="text/css">
+    	
+    	/* 	  消息栏高度 */
+		.inform{
+			border:1px solid white;
+		}
+    	.inform ul{
+    		list-style-type: none;
+    		max-height:100px;	
+			overflow:auto;
+			font-size:15px;
+			
+    	}
+    
+    	.generalize div{
+     		margin:0 auto;
+    		height:255px; 
+    		
+    	}
+    	
+/*     	书籍大小、间隔，浮动定位 */
+    	.generalize .books{
+    		height:255px;
+    		width:171px;
+     		float:left;
+    		margin:0 1%;
+    		
+    	}
+    	.generalize img{
+    		width:171px;
+    		height:255px;
+    	}
+    	.generalize ul{
+    		list-style-type: none;
+    	}
+    	
+    	.generalize .books:hover{
+    		position:relative;
+    		bottom:10px;
+    		left:10px;
+    		cursor: pointer
+    	}
+    	
+    	body{
+    		position:relative;
+    	}
+/*     	书籍展示弹框的样式 */
+		.introduceBook{
+    		width:40%;
+    		margin:auto;
+    		background-color:white;
+    		border:1px solid #8D8F91;
+    		position:absolute;
+    		top:200px;
+    		left:20%;
+    		padding:15px;
+	    	}
+	    	
+/* 	    按钮样式 */
+    	#clsMessage_btn,#openMessage_btn{
+    		margin-right:5px;
+    		float:right;
+    	}
+	    .introduceBook p{
+	    	
+	    }
+	     .introduceBook input{
+	     	margin:0 auto;
+	     }
+	     
+/* 		鼠标悬停时效果 */
+		.inform ul li:hover{
+			background-color:green;
+			cursor:pointer;
+		}
+		
+    </style>
+    
+</head >
+<body >
+<section class="content-header">
+    <h1>
+        我的工作台
+        <small>首页</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i>主页</a></li>
+        <li><a href="#">我的工作台</a></li>
+        <li class="active">首页</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-lg-4">
+            <!-- small box -->
+            <div class="small-box bg-aqua" style="cursor: pointer">
+                <div class="inner">
+                    <h3>近期待还书目&nbsp&nbsp</h3>
+
+                    <p style="white-space:nowrap;max-width:70%;">&nbsp&nbsp</p>
+                </div>
+                <div class="icon">
+                    <!--<i class="ion ion-bag"></i>-->
+                    <i class="ion ion-ios-alarm-outline"></i>
+                </div>
+                <!--<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>-->
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-4 col-lg-offset-2">
+            <!-- small box -->
+            <div class="small-box bg-green" style="cursor: pointer" onclick="location.href='tofind.do'">
+                <div class="inner">
+                    <h3>热搜榜</h3>
+
+                    <p>&nbsp</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-stats-bars"></i>
+                </div>
+                <!--<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>-->
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4">
+            <!-- small box -->
+            <div class="small-box bg-yellow" style="cursor: pointer">
+                <div class="inner">
+                    <h3>资金情况</h3>
+
+                    <p>&nbsp</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-social-yen"></i>
+                </div>
+                <!--<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>-->
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-4 col-lg-offset-2">
+            <!-- small box -->
+            <div class="small-box bg-red"  id="toInform" style="cursor: pointer" 
+            	onclick="window.location=path+'html/inform/informManage.html'"
+            >
+                <div class="inner">
+                    <h3>通知公告</h3>
+
+                    <p>&nbsp</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-ios-pulse"></i>
+                </div>
+                <!--<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>-->
+            </div>
+        </div>
+        
+</div>
+<!--         公告栏 -->
+<div  class="inform" >
+    <h3 >通知公告</h3>
+    
+	<ul>
+	</ul>
+</div>
+
+<!-- 书籍推荐 -->
+<div class="generalize">
+	<div>
+		<ul id="bookUl">
+		</ul>
+	</div>
+</div>
+
+<!-- 书籍弹窗 -->
+<div class="introduceBook" style="display:none;">
+	<div>
+		<h3 style='border-bottom:1px solid #F4F4F4; ' ></h3>
+		<p></p>
+	</div>
+	<button type="button" value="" class="btn btn-primary" id="openMessage_btn">去看看</button>
+	<button type="button" value="" class="btn btn-default" id="clsMessage_btn">关闭</button>
+</div>
+
+<!-- 消息展示弹框 -->
+ <div class="modal fade" id="myModalShow" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        x
+                    </button>
+                    <h4 class="modal-title" id="myModalAddLable">
+                       查看
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <!--<div id="delePower" style="display: none;">-->
+                        <!--确定删除角色?-->
+                    <!--</div>-->
+                    <div class="box box-info">
+                        <div class="box-header with-border">
+                            <h3 class="box-title" id="titleShow" ></h3>
+                        </div>
+                        <div class="form-horizontal">
+                            <div class="box-body">
+                                <div class="form-group">
+                                    <div class="row" style="margin-left: 0px;">
+<!--                                         <label class="control-label col-sm-2" >标题</label> -->
+                                        <div class="col-sm-4">
+<!--                                             <input type="text" class="form-control" id="titleShow"> -->
+					
+                                        </div>
+                                       
+                                    </div>
+                                    
+                                </div>
+                                <div class="form-group">
+                                    <div class="row" style="margin-left: 0px;">
+<!--                                         <label class="control-label col-sm-2">文章</label> -->
+                                      
+<!--                                             <input type="area" class="form-control"> -->
+												<article>
+                                        			<p style="font-size:larger;line-height:200%;text-indent:2em;margin:30px;" id="contentShow"></p>
+ 													<p style="font-size:larger;line-height:200%;text-indent:2em;font-style:oblique;text-align:right;margin:30px;" id="showTimeShow"></p>
+												</article>
+<!-- 												<textarea rows="10" style="width:70%" id="content" onmousedown="content(event,this)"> -->
+<!-- 													</textarea> -->
+
+                                       
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" id="clsShow_btn">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+
+$(function(){
+// 	根据cookie布局页面
+	var position=getCookie("token");
+	if(position == "smanager" || position == 'manager'){
+		$(".inner:eq(0) h3").html("今日借还书情况");
+	}else if(position == 'reader'){
+		
+	}
+	
+// 	获取公告消息
+	$.ajax({
+		url:path+"inform/findInform.do",
+		method:"post",
+		resultData:"json",
+		data:{},
+		success:function(result){
+			var informs = result.data;
+			if(result.status == 0){
+				for(i=0;i<informs.length;i++){
+					createInform(informs[i]);
+				}
+			}else{
+				swal({
+					title:result.message,
+		          	text:"",
+		         	type:"error"});
+			}
+		},
+		error:function(){
+			swal({
+				title:"通知公告加载失败",
+	          	text:"",
+	         	type:"error"});
+		}
+	});
+	
+// 	创建消息
+	function createInform(e){
+		var timeFormate = new Date(e.showTime).toLocaleDateString();
+		sli = "<li>"+e.title+"…………<span style='color:black;font-style:oblique;'>"+timeFormate+"</span></li>";
+		$li = $(sli);
+		$li.data("e",e);
+		$(".inform ul").append($li);
+	}
+	
+// 	消息单击展示
+	$(".inform ul").on('click','li',function(){
+		var inform = $(this).data("e");
+		var timeFormate = new Date(inform.showTime).toLocaleDateString();
+		$("#titleShow").html(inform.title);
+		$("#contentShow").html(inform.content);
+		$("#showTimeShow").html(timeFormate);
+		$("#myModalShow").modal("show");
+	});
+// 	隐藏消息展示
+	$("#clsShow_btn").click(function(){
+		$("#myModalShow").modal("hide");
+	});
+	
+	var id;
+	var length;
+	var books;
+// 	展示书籍推荐
+	$.ajax({
+		url:path+"/book/findRecommendBook.do",
+		method:"post",
+		resultData:"json",
+		data:{},
+		success:function(result){
+			books = result.data;
+			if(result.status == 0){
+				
+// 				初始化加载图片
+				for(i=1;i<=6;i++){
+					var book = books[i-1];
+					if(books.length == 0){
+						break;
+					}
+					createBook(book);
+					if(books.length == i){
+						break;
+					}
+				}
+				
+// 				轮转广告
+				length=6;
+				interval(books);
+// 				id=setInterval(roll(books),3000);
+			}else{
+				swal({
+					title:result.message,
+		          	text:"",
+		         	type:"error"});
+			}
+		},
+		error:function(){
+			swal({
+				title:"推荐书籍加载失败",
+	          	text:"",
+	         	type:"error"});
+		
+	}
+	});
+	
+// 	创建book
+	function createBook(book){
+		var sli ="<li class='books' ><div ><img  src='"+path+book.imgPath+"'/></div></li>";
+		$li = $(sli);
+		$li.data("book",book);
+		$(".generalize div ul").append($li);	
+	}
+	
+// 	单击图书弹出推荐
+	$("#bookUl").on("click","li",function(){
+		$(".introduceBook").css("display","block");
+		var book = $(this).data("book");
+		$(".introduceBook h3").html(book.bookName);
+		$(".introduceBook p").html(book.bookComment);
+			
+	});
+	
+//		单击关闭弹框
+	$("#clsMessage_btn").click(function(){
+		$(".introduceBook").css("display","none");
+	});
+	
+// 	鼠标悬停时，轮转窗暂停
+	$("#bookUl").mouseover(function(){
+		clearInterval(id);
+	});
+	$("#bookUl").mouseout(function(){
+		interval(books);
+	});
+	
+	function interval(books){
+		id=setInterval(roll,3000);
+	}
+	function roll(){
+		$("#bookUl").children().eq(0).remove();
+		var book = books[length++];
+		if(length == books.length){
+			length = 0;
+		}
+		createBook(book);
+		$("#bookUl li:last").hide();
+		$("#bookUl li:last").fadeIn(3000);
+	}
+});
+
+    </script>
+</body>
+</html>

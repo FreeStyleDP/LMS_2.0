@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>回款计划</title>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/AdminLTE.css">
+    <link rel="stylesheet" href="../css/ionicons.css">
+    <link rel="stylesheet" href="../css/font-awesome.css">
+    <link rel="stylesheet" href="../css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="../css/bootstrap-table.css">
+    <link rel="stylesheet" href="../css/bootstrap-datetimepicker.css">
+    <!--<link rel="stylesheet" href="../css/font-awesome.css">-->
+    <!--<link rel="stylesheet" href="../css/ionicons.css">-->
+</head>
+<body>
+<section class="content-header">
+    <h1>
+        我的工作台
+        <small>回款计划</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i>主页</a></li>
+        <li><a href="#">我的工作台</a></li>
+        <li class="active">回款计划</li>
+    </ol>
+</section>
+
+<section class="content" style="margin-left: 15px;margin-right: 15px;">
+    <form class="form-inline">
+    <div class="row">
+
+            <label for="customerId" class="control-label">客户Id</label>
+            <input type="text" class="form-control" size="8"/>
+
+
+            <label for="customerName" class="control-label">客户姓名</label>
+            <input type="text" class="form-control" size="8"/>
+
+
+            <label for="proName" class="control-label">项目名称</label>
+            <input type="text" class="form-control" size="8"/>
+            <label for="prostatus" class="control-label">状态</label>
+        <select id="prostatus" name="prostatus" class="form-control">
+            <option value="0">已回款</option>
+            <option value="1">未回款</option>
+        </select>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <label for="month" class="control-label">回款时间</label>
+            <input class="form_datetime" type="text" value="" size="6" style="margin-left:5px">
+            <label  class="control-label">至</label>
+            <input class="form_datetime" type="text" value="" size="6" style="margin-left:5px">
+            <button button type="button" class="btn bg-orange">搜索</button>
+        </div>
+
+    </div>
+    </form>
+    <div class="row" style="margin-top: 15px;">
+        <div id="toolbar" class="btn-group">
+
+            <button type="button" class="btn bg-olive">
+                <span class="glyphicon glyphicon-envelope"></span>短信
+            </button>
+            <button type="button" class="btn bg-purple">
+                <span class="glyphicon glyphicon-gift"></span>客户奖励
+            </button>
+        </div>
+        <table id="table" data-toggle="table" data-toolbar="#toolbar">
+            <thead>
+            <tr>
+                <th>全选</th>
+                <th>客户id</th>
+                <th>姓名</th>
+                <th>注册手机号</th>
+                <th>性别</th>
+                <!--<th>客户本人邀请码</th>-->
+                <!--<th>生日</th>-->
+                <!--<th>客户区域</th>-->
+                <!--<th>当日在投余额</th>-->
+                <!--<th>当日账户余额</th>-->
+                <!--<th>当日新增投资额</th>-->
+                <!--<th>总投资笔数</th>-->
+                <!--<th>累计投资额</th>-->
+                <!--<th>累计年化投资额</th>-->
+                <!--<th>累计邀请投资人数</th>-->
+                <!--<th>累计邀请投资额</th>-->
+                <!--<th>累计邀请年化投资额</th>-->
+                <!--<th>操作</th>-->
+            </tr>
+            </thead>
+            <tbody>
+            <!--<tr>-->
+            <!--<td></td>-->
+            <!--<td>1</td>-->
+            <!--<td>小明</td>-->
+            <!--<td>18200000001</td>-->
+            <!--<td>男</td>-->
+            <!--<td>12</td>-->
+            <!--<td>19940201</td>-->
+            <!--<td>四川</td>-->
+            <!--<td>1000</td>-->
+            <!--<td>2000</td>-->
+            <!--<td>500</td>-->
+            <!--<td>11</td>-->
+            <!--<td>100000</td>-->
+            <!--<td>2000</td>-->
+            <!--<td>20</td>-->
+            <!--<td>10000</td>-->
+            <!--<td>1111</td>-->
+            <!--<td>111</td>-->
+            <!--</tr>-->
+            </tbody>
+        </table>
+    </div>
+</section>
+<script src="../js/jquery-2.2.3.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/bootstrap-table.js"></script>
+<script src="../js/bootstrap-datetimepicker.js"></script>
+<script src="../js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<script>
+    $("#table").bootstrapTable({
+        url:"../data/customer/customerinfo.json",
+        method: "get",
+        striped: true, //是否显示行间隔色
+        cache: true, //是否使用缓存，默认为true
+        pagination: true, //是否显示分页（*）
+        queryParams: null,//传递参数（*）
+        sidePagination: "server",
+        pageNumber:1, //初始化加载第一页，默认第一页
+        pageSize:5,
+        pageList: [5, 10, 20], //可供选择的每页的行数（*）
+        showColumns: true, //是否显示所有的列
+        showRefresh: true,
+        minimumCountColumns: 2, //最少允许的列数
+        clickToSelect: true, //是否启用点击选中行
+        height: 500, //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+        uniqueId: "id", //每一行的唯一标识，一般为主键列
+        showToggle:true, //是否显示详细视图和列表视图的切换按钮
+        cardView: false, //是否显示详细视图
+        detailView: false, //是否显示父子表
+        columns: [{
+            checkbox: true
+        }, {
+            field: 'id',
+            align: 'center',
+            valign: 'middle'
+        }, {
+            field: 'name',
+            align: 'center',
+            valign: 'middle'
+        }, {
+            field: 'phone',
+            align: 'center',
+            valign: 'middle'
+        }, {
+            field: 'sex',
+            align: 'center',
+            valign: 'middle',
+            formatter: function (value, row, index) {
+//                console.log(value + ":"+ row + ":"+index);
+                if (value === 1) {
+                    return "男";
+                }
+                else if (value == 2) {
+                    return "女";
+                }
+            }
+        }, ]
+    });
+    $('.form_datetime').datetimepicker({
+        format: 'yyyymmdd',
+        weekStart: 1,
+        autoclose: true,
+        startView: 2,
+        minView: 2,
+        forceParse: false,
+        language: 'zh-CN'
+    });
+
+
+
+</script>
+</body>
+</html>

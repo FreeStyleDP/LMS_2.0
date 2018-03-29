@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en" style="overflow:hidden;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/font-awesome.css">
+    <link src="../css/AdminLTE.min.css">
+    <script src="../js/jquery-2.2.3.min.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <script src="../js/util.js"></script>
+    <style>
+        .panel-group{overflow: auto;}
+        .leftMenu{margin:10px;margin-top:15px;}
+        .leftMenu .panel-heading{font-size:14px;padding-left:20px;height:36px;line-height:36px;color:white;position:relative;cursor:pointer;}/*转成手形图标*/
+        .leftMenu .panel-heading span{position:absolute;right:10px;top:12px;}
+        .leftMenu .menu-item-left{padding: 2px; background: transparent; border:1px solid transparent;border-radius: 6px;}
+        .leftMenu .menu-item-left:hover{background:#C4E3F3;border:1px solid #1E90FF;}
+        .btn-menu{}
+
+
+    </style>
+    
+    
+</head>
+<body >
+<nav class="navbar-default" role="navigation" style="background-color: #009688;margin-left: 10px;margin-right: 10px;" >
+    <div class="container-fluid">
+        <div class="navbar-header">
+
+            <a class="navbar-brand" href="#"><font color="white">图书借阅管理系统</font>&nbsp&nbsp&nbsp&nbsp&nbsp<span  style="line-height:60%;" color="white"><font id="hello" color="white"></font></span></a>
+            <p style="text-align:center;"><font color="white"></font></p>
+        </div>
+        <div>
+            <!--<p class="navbar-text">用户登录</p>-->
+            <button type="button" class="btn navbar-btn" id="out-btn" style="float: right">
+                退出
+            </button>
+        </div>
+    </div>
+</nav>
+<div class="row" style="margin:0;">
+    <div class="col-md-2">
+        <div class="panel-group table-responsive" role="tablist">
+            <div class="panel panel-primary leftMenu">
+                <!-- 利用data-target指定要折叠的分组列表 -->
+                <div class="panel-heading" id="collapseListGroupHeading0" data-toggle="collapse" role="tab" >
+
+
+<!--                     <h4 class="panel-title btn-menu" data-target="inform/overview.html"> -->
+                    <h4 class="panel-title btn-menu" data-target="overview.html">
+                       首页
+                        <!--<span class="glyphicon glyphicon-chevron-down right"></span>-->
+                    </h4>
+                </div>
+            </div><!--panel end-->
+            <div class="panel panel-primary leftMenu">
+                <!-- 利用data-target指定要折叠的分组列表 -->
+                <div class="panel-heading" id="collapseListGroupHeading1" data-toggle="collapse" data-target="#collapseListGroup1" role="tab" >
+                    <h4 class="panel-title">
+                    书籍检索
+                        <span class="glyphicon glyphicon-chevron-right right"></span>
+                    </h4>
+                </div>
+                <!-- .panel-collapse和.collapse标明折叠元素 .in表示要显示出来 -->
+                <div id="collapseListGroup1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="collapseListGroupHeading1">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <!-- 利用data-target指定URL -->
+                            <button class="menu-item-left btn-menu" data-target="tofind.do">
+                                书籍检索
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div><!--panel end-->
+            <div class="panel panel-primary leftMenu">
+                <div class="panel-heading" id="collapseListGroupHeading2" data-toggle="collapse" data-target="#collapseListGroup2" role="tab" >
+                    <h4 class="panel-title">
+                        借还书
+                        <span class="glyphicon glyphicon-chevron-right right"></span>
+                    </h4>
+                </div>
+                <div id="collapseListGroup2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="collapseListGroupHeading2">
+                    <ul class="list-group">
+<!--                         <li class="list-group-item"> -->
+<!--                             <button class="menu-item-left btn-menu"> -->
+<!--                                 <span class="glyphicon"></span>业绩汇总（等待格式中） -->
+<!--                             </button> -->
+<!--                         </li> -->
+                        <li class="list-group-item">
+                            <button class="menu-item-left btn-menu" data-target="">
+                                借还管理
+                            </button>
+                        </li>
+<!--                         <li cl、ass="list-group-item"> -->
+<!--                             <button class="menu-item-left btn-menu" data-target="customerAnalyse.html"> -->
+<!--                                 投资期限偏好分析 -->
+<!--                             </button> -->
+<!--                         </li> -->
+                    </ul>
+                </div>
+            </div>
+            <div class="panel panel-primary leftMenu">
+                <!-- 利用data-target指定要折叠的分组列表 -->
+                <div class="panel-heading" id="collapseListGroupHeading3" data-toggle="collapse" data-target="#collapseListGroup3" role="tab" >
+                    <h4 class="panel-title">
+                        书籍管理
+                        <span class="glyphicon glyphicon-chevron-right right"></span>
+                    </h4>
+                </div>
+                <!-- .panel-collapse和.collapse标明折叠元素 .in表示要显示出来 -->
+                <div id="collapseListGroup3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="collapseListGroupHeading3">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <!-- 利用data-target指定URL -->
+                            <button class="menu-item-left btn-menu" data-target="">
+                                <span class="glyphicon"></span>新增书籍
+                            </button>
+                        </li>
+<!--                         <li class="list-group-item"> -->
+<!--                             利用data-target指定URL -->
+<!--                             <button class="menu-item-left btn-menu" data-target="test2.html"> -->
+<!--                                 <span class="glyphicon"></span>投资幅度提醒 -->
+<!--                             </button> -->
+<!--                         </li> -->
+<!--                         <li class="list-group-item"> -->
+<!--                             利用data-target指定URL -->
+<!--                             <button class="menu-item-left btn-menu" data-target="test2.html"> -->
+<!--                                 <span class="glyphicon"></span>30天未投资提醒 -->
+<!--                             </button> -->
+<!--                         </li> -->
+<!--                         <li class="list-group-item"> -->
+<!--                             利用data-target指定URL -->
+<!--                             <button class="menu-item-left btn-menu" data-target="test2.html"> -->
+<!--                                 <span class="glyphicon"></span>生日提醒 -->
+<!--                             </button> -->
+<!--                         </li> -->
+<!--                         <li class="list-group-item"> -->
+<!--                             利用data-target指定URL -->
+<!--                             <button class="menu-item-left btn-menu" data-target="earningsPlan.html"> -->
+<!--                                 <span class="glyphicon"></span>回款计划 -->
+<!--                             </button> -->
+<!--                         </li> -->
+                    </ul>
+                </div>
+            </div><!--panel end-->
+            <div class="panel panel-primary leftMenu">
+                <!-- 利用data-target指定要折叠的分组列表 -->
+                <div class="panel-heading" id="collapseListGroupHeading4" data-toggle="collapse" data-target="#collapseListGroup4" role="tab" >
+                    <h4 class="panel-title">
+                       用户管理
+                        <span class="glyphicon glyphicon-chevron-right right"></span>
+                    </h4>
+                </div>
+                <!-- .panel-collapse和.collapse标明折叠元素 .in表示要显示出来 -->
+                <div id="collapseListGroup4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="collapseListGroupHeading4">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <!-- 利用data-target指定URL -->
+                            <button class="menu-item-left btn-menu" data-target="toUser.do">
+                                <span class="glyphicon"></span>用户管理
+                            </button>
+                        </li>
+<!--                         <li class="list-group-item"> -->
+<!--                             利用data-target指定URL -->
+<!--                             <button class="menu-item-left btn-menu" data-target="test2.html"> -->
+<!--                                 <span class="glyphicon"></span>节假日自动祝福 -->
+<!--                             </button> -->
+<!--                         </li> -->
+<!--                         <li class="list-group-item"> -->
+<!--                             利用data-target指定URL -->
+<!--                             <button class="menu-item-left btn-menu" data-target="test2.html"> -->
+<!--                                 <span class="glyphicon"></span>短信库管理 -->
+<!--                             </button> -->
+<!--                         </li> -->
+<!--                         <li class="list-group-item"> -->
+<!--                             利用data-target指定URL -->
+<!--                             <button class="menu-item-left btn-menu" data-target="test2.html"> -->
+<!--                                 <span class="glyphicon"></span>发送历史记录 -->
+<!--                             </button> -->
+<!--                         </li> -->
+<!--                         <li class="list-group-item"> -->
+<!--                             利用data-target指定URL -->
+<!--                             <button class="menu-item-left btn-menu" data-target="test2.html"> -->
+<!--                                 <span class="glyphicon"></span>回款计划 -->
+<!--                             </button> -->
+<!--                         </li> -->
+                    </ul>
+                </div>
+            </div><!--panel end-->
+            <div class="panel panel-primary leftMenu">
+                <!-- 利用data-target指定要折叠的分组列表 -->
+                <div class="panel-heading" id="collapseListGroupHeading5" data-toggle="collapse" data-target="#collapseListGroup5" role="tab" >
+                    <h4 class="panel-title">
+                        分析
+                        <span class="glyphicon glyphicon-chevron-right right"></span>
+                    </h4>
+                </div>
+                <!-- .panel-collapse和.collapse标明折叠元素 .in表示要显示出来 -->
+                <div id="collapseListGroup5" class="panel-collapse collapse" role="tabpanel" aria-labelledby="collapseListGroupHeading5">
+<!--                     <ul class="list-group"> -->
+<!--                         <li class="list-group-item"> -->
+<!--                             利用data-target指定URL -->
+<!--                             <button class="menu-item-left btn-menu" data-target="test2.html"> -->
+<!--                                 <span class="glyphicon"></span>客户奖励 -->
+<!--                             </button> -->
+<!--                         </li> -->
+<!--                     </ul> -->
+                </div>
+            </div><!--panel end-->
+        </div>
+    </div>
+    <div class="col-md-10">
+        <!--<iframe id="content" frameborder="0"></iframe>-->
+        <div>
+            <iframe src="overview.html" frameborder="0" id="content" width="100%" onload="iFrameHeight();">
+
+            </iframe>
+        </div>
+    </div>
+</div>
+</body>
+<script >
+    function iFrameHeight(){
+
+        var ifm = document.getElementById("content");
+        ifm.height = document.documentElement.clientHeight;
+    }
+    
+    $(document).ready(function() {
+    	console.log(getCookie("hello"));
+//     	设置hello
+    	$("#hello").html( getCookie('hello'));
+    	setInterval(function(){
+    		$("#hello").html( getCookie('hello'));
+    	},10000);
+    	
+    	
+//     	根据session布局页面
+		var token=getCookie("token");
+    	if(token == "2" || token == '3'){
+    		
+    	}else if(token == '1'){
+    		$("#collapseListGroup4 li").eq(0).hide();
+    	}
+    	
+//     	单击退出
+    	$("#out-btn").click(function(){
+    		location.href="../login/quit.do";
+    	});
+    	
+        $(".panel-heading").click(function(e){
+            /*切换折叠指示图标*/
+            $(this).find("span").toggleClass("glyphicon-chevron-right");
+            $(this).find("span").toggleClass("glyphicon-chevron-down");
+        });
+        $('.inactive').click(function(){
+            if($(this).siblings('ul').css('display')=='none'){
+                $(this).parent('li').siblings('li').removeClass('inactives');
+                $(this).addClass('inactives');
+                $(this).siblings('ul').slideDown(500).children('li');
+                if($(this).parents('li').siblings('li').children('ul').css('display')=='block'){
+                    $(this).parents('li').siblings('li').children('ul').parent('li').children('a').removeClass('inactives');
+                    $(this).parents('li').siblings('li').children('ul').slideUp(500);
+                }
+            }else{
+                //控制自身变成+号
+                $(this).removeClass('inactives');
+                //控制自身菜单下子菜单隐藏
+                $(this).siblings('ul').slideUp(500);
+                //控制自身子菜单变成+号
+                $(this).siblings('ul').children('li').children('ul').parent('li').children('a').addClass('inactives');
+                //控制自身菜单下子菜单隐藏
+                $(this).siblings('ul').children('li').children('ul').slideUp(500);
+
+                //控制同级菜单只保持一个是展开的（-号显示）
+                $(this).siblings('ul').children('li').children('a').removeClass('inactives');
+            }
+        });
+        
+//         加载内嵌页面
+        function loadPage(param) {
+            window.frames["content"].src =param;
+        }
+        $(".panel-group").on("click", ".btn-menu", function () {
+            var page = $(this).attr("data-target");
+            loadPage(page);
+        });
+    });
+    
+
+</script>
+</html>
